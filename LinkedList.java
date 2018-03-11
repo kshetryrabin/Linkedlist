@@ -13,6 +13,33 @@ public class LinkedList {
 			next=null;
 		}
 	}
+	
+	public void push(int new_data) {
+		Node new_node=new Node(new_data);
+		new_node.next=head;
+		head=new_node;
+	}
+	
+	void merge(LinkedList q) {
+		Node p_curr=head;
+		Node q_curr=q.head;
+		Node p_next,q_next;
+		
+		while(p_curr !=null && q_curr != null) {
+			p_next=p_curr.next;
+			q_next=q_curr.next;
+			
+			q_curr.next=p_next;
+			p_curr.next=q_curr;
+			
+			p_curr=p_next;
+			q_curr=q_next;
+		}
+		q.head=q_curr;
+		
+	}
+	
+	
 	//print the list 
 	public void printList() {
 		Node n=head;
@@ -22,7 +49,7 @@ public class LinkedList {
 		}
 		
 	}
-	public void InsertAtBegin(int new_data) {
+	/*public void InsertAtBegin(int new_data) {
 		Node new_node=new Node(new_data);
 		new_node.next=head;
 		head=new_node;
@@ -55,14 +82,44 @@ public class LinkedList {
 		last.next=new_node;
 		return;
 	}
-	
+	*/
 	
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		LinkedList llist=new LinkedList();
-		llist.head= new Node(1);
+		LinkedList llist1=new LinkedList();
+		LinkedList llist2=new LinkedList();
+		
+		llist1.push(1);
+		llist1.push(2);
+		llist1.push(3);
+		llist1.push(4);
+		
+		System.out.println("first linked list:");
+		llist1.printList();
+		
+		llist2.push(5);
+		llist2.push(6);
+		llist2.push(7);
+		llist2.push(8);
+		llist2.push(9);
+		llist2.push(10);
+		
+		System.out.println("second linked list:");
+		llist2.printList();
+		
+		llist1.merge(llist2);
+		
+		System.out.println("modified linked list 1 is:");
+		llist1.printList();
+		
+		System.out.println("modified linked list 2 is :");
+		llist2.printList();
+		
+		
+		
+		/*llist.head= new Node(1);
 		Node second =new Node(2);
 		Node third=new Node(3);
 		Node fourth=new Node(4);
@@ -81,6 +138,7 @@ public class LinkedList {
 		
 		llist.InsertAtEnd(8);
 		llist.printList();
+		*/
 	}
 
 }
